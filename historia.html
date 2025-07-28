@@ -1,1001 +1,1204 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Historia de la Computación Cuántica | Marco Mayta</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        :root {
-            --primary-color: #0066ff;
-            --secondary-color: #00ffff;
-            --accent-color: #ff0066;
-            --gold-color: #ffd700;
-            --bg-dark: #0a0a0a;
-            --bg-light: #1a1a1a;
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        }
+      :root {
+        --primary-color: #0066ff;
+        --secondary-color: #00ffff;
+        --accent-color: #ff0066;
+        --gold-color: #ffd700;
+        --bg-dark: #0a0a0a;
+        --bg-light: #1a1a1a;
+        --text-primary: #ffffff;
+        --text-secondary: #cccccc;
+        --gradient: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+      }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: var(--bg-dark);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
 
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
 
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
 
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+      .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
 
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
+      .nav-links a:hover {
+        color: var(--secondary-color);
+      }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: radial-gradient(ellipse at center, rgba(0, 102, 255, 0.1), transparent);
-        }
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(0, 102, 255, 0.1),
+          transparent
+        );
+      }
 
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-            max-width: 900px;
-            padding: 0 2rem;
-        }
+      .hero-content {
+        text-align: center;
+        z-index: 2;
+        max-width: 900px;
+        padding: 0 2rem;
+      }
 
+      .hero h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease 0.2s both;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        animation: fadeInUp 1s ease 0.4s both;
+      }
+
+      .social-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 25px;
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        border-color: var(--secondary-color);
+        color: var(--secondary-color);
+        transform: translateY(-2px);
+      }
+
+      /* Quantum Animations Container */
+      .quantum-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .time-spiral {
+        position: absolute;
+        top: 20%;
+        right: 10%;
+        width: 300px;
+        height: 300px;
+        perspective: 1000px;
+      }
+
+      .spiral {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: rotateSpiral 25s linear infinite;
+      }
+
+      .spiral-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border: 2px solid var(--gold-color);
+        border-radius: 50%;
+        opacity: 0.4;
+        animation: pulse 3s ease-in-out infinite;
+      }
+
+      .ring-1 {
+        width: 60px;
+        height: 60px;
+        margin: -30px 0 0 -30px;
+        transform: rotateX(0deg) translateZ(50px);
+      }
+      .ring-2 {
+        width: 120px;
+        height: 120px;
+        margin: -60px 0 0 -60px;
+        transform: rotateX(30deg) translateZ(30px);
+        animation-delay: 0.5s;
+      }
+      .ring-3 {
+        width: 180px;
+        height: 180px;
+        margin: -90px 0 0 -90px;
+        transform: rotateX(60deg) translateZ(10px);
+        animation-delay: 1s;
+      }
+      .ring-4 {
+        width: 240px;
+        height: 240px;
+        margin: -120px 0 0 -120px;
+        transform: rotateX(90deg) translateZ(-10px);
+        animation-delay: 1.5s;
+      }
+
+      .time-particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: var(--gold-color);
+        border-radius: 50%;
+        animation: timeFloat 8s ease-in-out infinite;
+        box-shadow: 0 0 8px var(--gold-color);
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: var(--secondary-color);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+        box-shadow: 0 0 6px var(--secondary-color);
+      }
+
+      /* Timeline */
+      .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: var(--gradient);
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      .timeline-item {
+        position: relative;
+        margin: 4rem 0;
+        opacity: 0;
+        animation: slideInTimeline 0.8s ease forwards;
+      }
+
+      .timeline-item:nth-child(odd) {
+        padding-right: 50%;
+        text-align: right;
+      }
+
+      .timeline-item:nth-child(even) {
+        padding-left: 50%;
+        text-align: left;
+        animation-delay: 0.2s;
+      }
+
+      .timeline-content {
+        background: var(--bg-light);
+        border-radius: 15px;
+        padding: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px);
+        border-color: var(--secondary-color);
+        box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+      }
+
+      .timeline-content::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 15px solid transparent;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content::before {
+        right: -30px;
+        border-left-color: var(--bg-light);
+      }
+
+      .timeline-item:nth-child(even) .timeline-content::before {
+        left: -30px;
+        border-right-color: var(--bg-light);
+      }
+
+      .timeline-year {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--gradient);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        z-index: 10;
+        min-width: 80px;
+        text-align: center;
+      }
+
+      .timeline-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--secondary-color);
+      }
+
+      .timeline-description {
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      .timeline-person {
+        display: inline-block;
+        background: rgba(0, 255, 255, 0.1);
+        color: var(--secondary-color);
+        padding: 0.2rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        margin: 0.5rem 0.2rem 0 0;
+        border: 1px solid rgba(0, 255, 255, 0.3);
+      }
+
+      /* Sections */
+      section {
+        padding: 6rem 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .era-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .era-card {
+        background: var(--bg-light);
+        border-radius: 15px;
+        padding: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .era-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--gold-color);
+        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+      }
+
+      .era-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        animation: pulse 2s infinite;
+      }
+
+      .era-classical {
+        color: var(--gold-color);
+      }
+      .era-quantum {
+        color: var(--secondary-color);
+      }
+      .era-future {
+        color: var(--accent-color);
+      }
+
+      /* Interactive Demo */
+      .interactive-demo {
+        background: var(--bg-light);
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 3rem 0;
+        text-align: center;
+      }
+
+      .demo-button {
+        background: var(--gradient);
+        border: none;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: transform 0.3s ease;
+        margin: 1rem;
+      }
+
+      .demo-button:hover {
+        transform: scale(1.05);
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 2rem 0;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--gradient);
+        width: 0%;
+        transition: width 2s ease;
+        border-radius: 10px;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--bg-light);
+        text-align: center;
+        padding: 3rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes rotateSpiral {
+        from {
+          transform: rotateY(0deg) rotateX(15deg);
+        }
+        to {
+          transform: rotateY(360deg) rotateX(15deg);
+        }
+      }
+
+      @keyframes slideInTimeline {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes timeFloat {
+        0%,
+        100% {
+          transform: translateY(0px) translateX(0px) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-25px) translateX(15px) rotate(90deg);
+        }
+        50% {
+          transform: translateY(-15px) translateX(-15px) rotate(180deg);
+        }
+        75% {
+          transform: translateY(-35px) translateX(8px) rotate(270deg);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) translateX(0px);
+        }
+        25% {
+          transform: translateY(-20px) translateX(10px);
+        }
+        50% {
+          transform: translateY(-10px) translateX(-10px);
+        }
+        75% {
+          transform: translateY(-30px) translateX(5px);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.4;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease;
+          font-size: 2.5rem;
         }
-
         .hero p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s both;
+          font-size: 1.1rem;
         }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            border-color: var(--secondary-color);
-            color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
-        /* Quantum Animations Container */
-        .quantum-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
         .time-spiral {
-            position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 300px;
-            height: 300px;
-            perspective: 1000px;
+          display: none;
         }
-
-        .spiral {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: rotateSpiral 25s linear infinite;
+        .nav-links {
+          display: none;
         }
-
-        .spiral-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            border: 2px solid var(--gold-color);
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: pulse 3s ease-in-out infinite;
+        .social-links {
+          flex-direction: column;
+          gap: 1rem;
         }
-
-        .ring-1 { 
-            width: 60px; height: 60px; 
-            margin: -30px 0 0 -30px;
-            transform: rotateX(0deg) translateZ(50px);
-        }
-        .ring-2 { 
-            width: 120px; height: 120px; 
-            margin: -60px 0 0 -60px;
-            transform: rotateX(30deg) translateZ(30px);
-            animation-delay: 0.5s;
-        }
-        .ring-3 { 
-            width: 180px; height: 180px; 
-            margin: -90px 0 0 -90px;
-            transform: rotateX(60deg) translateZ(10px);
-            animation-delay: 1s;
-        }
-        .ring-4 { 
-            width: 240px; height: 240px; 
-            margin: -120px 0 0 -120px;
-            transform: rotateX(90deg) translateZ(-10px);
-            animation-delay: 1.5s;
-        }
-
-        .time-particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--gold-color);
-            border-radius: 50%;
-            animation: timeFloat 8s ease-in-out infinite;
-            box-shadow: 0 0 8px var(--gold-color);
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--secondary-color);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-            box-shadow: 0 0 6px var(--secondary-color);
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
+        section {
+          padding-left: 1rem;
+          padding-right: 1rem;
         }
 
         .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--gradient);
-            transform: translateX(-50%);
-            border-radius: 2px;
+          left: 30px;
         }
-
         .timeline-item {
-            position: relative;
-            margin: 4rem 0;
-            opacity: 0;
-            animation: slideInTimeline 0.8s ease forwards;
+          padding-left: 60px !important;
+          padding-right: 0 !important;
+          text-align: left !important;
         }
-
-        .timeline-item:nth-child(odd) {
-            padding-right: 50%;
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) {
-            padding-left: 50%;
-            text-align: left;
-            animation-delay: 0.2s;
-        }
-
-        .timeline-content {
-            background: var(--bg-light);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            border-color: var(--secondary-color);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
-        }
-
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 0;
-            height: 0;
-            border: 15px solid transparent;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::before {
-            right: -30px;
-            border-left-color: var(--bg-light);
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::before {
-            left: -30px;
-            border-right-color: var(--bg-light);
-        }
-
         .timeline-year {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--gradient);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            z-index: 10;
-            min-width: 80px;
-            text-align: center;
+          left: 30px;
+          transform: translateX(-50%);
         }
-
-        .timeline-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
+        .timeline-content::before {
+          left: -30px !important;
+          border-right-color: var(--bg-light) !important;
+          border-left-color: transparent !important;
         }
-
-        .timeline-description {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .timeline-person {
-            display: inline-block;
-            background: rgba(0, 255, 255, 0.1);
-            color: var(--secondary-color);
-            padding: 0.2rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            margin: 0.5rem 0.2rem 0 0;
-            border: 1px solid rgba(0, 255, 255, 0.3);
-        }
-
-        /* Sections */
-        section {
-            padding: 6rem 0;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .era-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .era-card {
-            background: var(--bg-light);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .era-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold-color);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
-        }
-
-        .era-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: pulse 2s infinite;
-        }
-
-        .era-classical { color: var(--gold-color); }
-        .era-quantum { color: var(--secondary-color); }
-        .era-future { color: var(--accent-color); }
-
-        /* Interactive Demo */
-        .interactive-demo {
-            background: var(--bg-light);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 3rem 0;
-            text-align: center;
-        }
-
-        .demo-button {
-            background: var(--gradient);
-            border: none;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: transform 0.3s ease;
-            margin: 1rem;
-        }
-
-        .demo-button:hover {
-            transform: scale(1.05);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 2rem 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--gradient);
-            width: 0%;
-            transition: width 2s ease;
-            border-radius: 10px;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-light);
-            text-align: center;
-            padding: 3rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes rotateSpiral {
-            from { transform: rotateY(0deg) rotateX(15deg); }
-            to { transform: rotateY(360deg) rotateX(15deg); }
-        }
-
-        @keyframes slideInTimeline {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes timeFloat {
-            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-            25% { transform: translateY(-25px) translateX(15px) rotate(90deg); }
-            50% { transform: translateY(-15px) translateX(-15px) rotate(180deg); }
-            75% { transform: translateY(-35px) translateX(8px) rotate(270deg); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) translateX(0px); }
-            25% { transform: translateY(-20px) translateX(10px); }
-            50% { transform: translateY(-10px) translateX(-10px); }
-            75% { transform: translateY(-30px) translateX(5px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.4; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.1rem; }
-            .time-spiral { display: none; }
-            .nav-links { display: none; }
-            .social-links { flex-direction: column; gap: 1rem; }
-            section { padding-left: 1rem; padding-right: 1rem; }
-            
-            .timeline::before { left: 30px; }
-            .timeline-item { padding-left: 60px !important; padding-right: 0 !important; text-align: left !important; }
-            .timeline-year { left: 30px; transform: translateX(-50%); }
-            .timeline-content::before { left: -30px !important; border-right-color: var(--bg-light) !important; border-left-color: transparent !important; }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header -->
     <header>
-        <nav>
-            <div class="logo">Historia Cuántica</div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#eras">Eras</a></li>
-                <li><a href="#cronologia">Cronología</a></li>
-                <li><a href="#pioneros">Pioneros</a></li>
-                <li><a href="#futuro">Futuro</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <div class="logo">Historia Cuántica</div>
+        <ul class="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#eras">Eras</a></li>
+          <li><a href="#cronologia">Cronología</a></li>
+          <li><a href="#pioneros">Pioneros</a></li>
+          <li><a href="#futuro">Futuro</a></li>
+        </ul>
+      </nav>
     </header>
 
     <!-- Hero Section -->
     <section id="inicio" class="hero">
-        <div class="quantum-bg">
-            <div class="time-spiral">
-                <div class="spiral">
-                    <div class="spiral-ring ring-1"></div>
-                    <div class="spiral-ring ring-2"></div>
-                    <div class="spiral-ring ring-3"></div>
-                    <div class="spiral-ring ring-4"></div>
-                </div>
-            </div>
-            <!-- Time particles -->
-            <div class="time-particle" style="top: 15%; left: 15%; animation-delay: 0s;"></div>
-            <div class="time-particle" style="top: 70%; left: 85%; animation-delay: 2s;"></div>
-            <div class="time-particle" style="top: 85%; left: 25%; animation-delay: 4s;"></div>
-            <div class="time-particle" style="top: 40%; left: 75%; animation-delay: 6s;"></div>
-            <!-- Regular particles -->
-            <div class="particle" style="top: 25%; left: 20%; animation-delay: 1s;"></div>
-            <div class="particle" style="top: 60%; left: 80%; animation-delay: 3s;"></div>
-            <div class="particle" style="top: 80%; left: 30%; animation-delay: 5s;"></div>
+      <div class="quantum-bg">
+        <div class="time-spiral">
+          <div class="spiral">
+            <div class="spiral-ring ring-1"></div>
+            <div class="spiral-ring ring-2"></div>
+            <div class="spiral-ring ring-3"></div>
+            <div class="spiral-ring ring-4"></div>
+          </div>
         </div>
-        
-        <div class="hero-content">
-            <h1>Historia de la Computación Cuántica</h1>
-            <p>Un viaje a través del tiempo: desde los primeros conceptos teóricos hasta las revoluciones tecnológicas del siglo XXI</p>
-            
-            <div class="social-links">
-                <a href="#" class="social-link">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fas fa-briefcase"></i>
-                    <span>Portafolio</span>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-twitter"></i>
-                    <span>Twitter</span>
-                </a>
-            </div>
+        <!-- Time particles -->
+        <div
+          class="time-particle"
+          style="top: 15%; left: 15%; animation-delay: 0s"
+        ></div>
+        <div
+          class="time-particle"
+          style="top: 70%; left: 85%; animation-delay: 2s"
+        ></div>
+        <div
+          class="time-particle"
+          style="top: 85%; left: 25%; animation-delay: 4s"
+        ></div>
+        <div
+          class="time-particle"
+          style="top: 40%; left: 75%; animation-delay: 6s"
+        ></div>
+        <!-- Regular particles -->
+        <div
+          class="particle"
+          style="top: 25%; left: 20%; animation-delay: 1s"
+        ></div>
+        <div
+          class="particle"
+          style="top: 60%; left: 80%; animation-delay: 3s"
+        ></div>
+        <div
+          class="particle"
+          style="top: 80%; left: 30%; animation-delay: 5s"
+        ></div>
+      </div>
+
+      <div class="hero-content">
+        <h1>Historia de la Computación Cuántica</h1>
+        <p>
+          Un viaje a través del tiempo: desde los primeros conceptos teóricos
+          hasta las revoluciones tecnológicas del siglo XXI
+        </p>
+
+        <div class="social-links">
+          <a href="https://github.com/Maqui2404" class="social-link">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/marco-mayta-835781170/"
+            class="social-link"
+          >
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a
+            href="https://maqui2404.github.io/PortafolioMarco.github.io/"
+            class="social-link"
+          >
+            <i class="fas fa-briefcase"></i>
+            <span>Portafolio</span>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fab fa-twitter"></i>
+            <span>Twitter</span>
+          </a>
         </div>
+      </div>
     </section>
 
     <!-- Eras de la Computación -->
     <section id="eras">
-        <h2 class="section-title">Las Grandes Eras</h2>
-        
-        <div class="era-grid">
-            <div class="era-card">
-                <div class="era-icon era-classical">🏛️</div>
-                <h3>Era Clásica</h3>
-                <h4>1900-1980</h4>
-                <p>Los fundamentos de la mecánica cuántica se establecen. Planck, Einstein, Bohr y otros pioneros desarrollan las bases teóricas que eventualmente harían posible la computación cuántica.</p>
-            </div>
-            
-            <div class="era-card">
-                <div class="era-icon era-quantum">⚛️</div>
-                <h3>Era Cuántica Teórica</h3>
-                <h4>1980-2000</h4>
-                <p>Feynman propone la simulación cuántica, Deutsch desarrolla la computación cuántica universal, y Shor revoluciona la criptografía con su algoritmo de factorización.</p>
-            </div>
-            
-            <div class="era-card">
-                <div class="era-icon era-future">🚀</div>
-                <h3>Era de Implementación</h3>
-                <h4>2000-Presente</h4>
-                <p>Las primeras computadoras cuánticas físicas aparecen. IBM, Google, y otras compañías desarrollan sistemas cuánticos cada vez más potentes y accesibles.</p>
-            </div>
+      <h2 class="section-title">Las Grandes Eras</h2>
+
+      <div class="era-grid">
+        <div class="era-card">
+          <div class="era-icon era-classical">🏛️</div>
+          <h3>Era Clásica</h3>
+          <h4>1900-1980</h4>
+          <p>
+            Los fundamentos de la mecánica cuántica se establecen. Planck,
+            Einstein, Bohr y otros pioneros desarrollan las bases teóricas que
+            eventualmente harían posible la computación cuántica.
+          </p>
         </div>
+
+        <div class="era-card">
+          <div class="era-icon era-quantum">⚛️</div>
+          <h3>Era Cuántica Teórica</h3>
+          <h4>1980-2000</h4>
+          <p>
+            Feynman propone la simulación cuántica, Deutsch desarrolla la
+            computación cuántica universal, y Shor revoluciona la criptografía
+            con su algoritmo de factorización.
+          </p>
+        </div>
+
+        <div class="era-card">
+          <div class="era-icon era-future">🚀</div>
+          <h3>Era de Implementación</h3>
+          <h4>2000-Presente</h4>
+          <p>
+            Las primeras computadoras cuánticas físicas aparecen. IBM, Google, y
+            otras compañías desarrollan sistemas cuánticos cada vez más potentes
+            y accesibles.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- Cronología Principal -->
     <section id="cronologia">
-        <h2 class="section-title">Cronología Histórica</h2>
-        
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-year">1900</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Nacimiento de la Física Cuántica</h3>
-                    <p class="timeline-description">Max Planck introduce el concepto de cuantización de la energía para explicar la radiación del cuerpo negro, marcando el inicio de la era cuántica.</p>
-                    <span class="timeline-person">Max Planck</span>
-                </div>
-            </div>
+      <h2 class="section-title">Cronología Histórica</h2>
 
-            <div class="timeline-item">
-                <div class="timeline-year">1905</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Efecto Fotoeléctrico</h3>
-                    <p class="timeline-description">Einstein explica el efecto fotoeléctrico usando la teoría cuántica de Planck, estableciendo el concepto de dualidad onda-partícula que es fundamental para la computación cuántica.</p>
-                    <span class="timeline-person">Albert Einstein</span>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">1925</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Mecánica Cuántica Moderna</h3>
-                    <p class="timeline-description">Heisenberg, Schrödinger y Born desarrollan la formulación matemática completa de la mecánica cuántica, incluyendo el principio de superposición.</p>
-                    <span class="timeline-person">Werner Heisenberg</span>
-                    <span class="timeline-person">Erwin Schrödinger</span>
-                    <span class="timeline-person">Max Born</span>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">1935</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Paradoja del Gato de Schrödinger</h3>
-                    <p class="timeline-description">Schrödinger formula su famosa paradoja para ilustrar las implicaciones contraintuitivas de la superposición cuántica en sistemas macroscópicos.</p>
-                    <span class="timeline-person">Erwin Schrödinger</span>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">1982</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Propuesta de Feynman</h3>
-                    <p class="timeline-description">Richard Feynman propone que las computadoras cuánticas podrían simular sistemas cuánticos de manera más eficiente que las computadoras clásicas, sentando las bases conceptuales.</p>
-                    <span class="timeline-person">Richard Feynman</span>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">1985</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Computación Cuántica Universal</h3>
-                    <p class="timeline-description">David Deutsch describe la primera computadora cuántica universal y demuestra que podría resolver ciertos problemas exponencialmente más rápido que las computadoras clásicas.</p>
-                    <span class="timeline-person">David Deutsch</span>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">1994</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Algoritmo de Shor</h3>
-                    <p class="timeline-description">Peter Shor desarrolla un algoritmo cuántico para factorizar números enteros grandes eficientemente, amenazando la seguridad de la criptografía RSA actual.</p>
-                    <span class="timeline-person">Peter Shor</span>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">1996</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Algoritmo de Grover</h3>
-                    <p class="timeline-description">Lov Grover presenta un algoritmo cuántico para búsqueda en bases de datos no estructuradas que ofrece una aceleración cuadrática sobre los métodos clásicos.</p>
-                    <span class="timeline-person">Lov Grover</span>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">1998</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Primeros Qubits Físicos</h3>
-                    <p class="timeline-description">Los primeros sistemas cuánticos de 2-3 qubits se demuestran experimentalmente, marcando la transición de la teoría a la implementación práctica.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">2001</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Primera Factorización Cuántica</h3>
-                    <p class="timeline-description">IBM demuestra el algoritmo de Shor factorizando el número 15 usando un computador cuántico de 7 qubits, probando la viabilidad práctica de los algoritmos cuánticos.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">2016</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">IBM Quantum Experience</h3>
-                    <p class="timeline-description">IBM lanza la primera plataforma de computación cuántica en la nube, permitiendo al público acceder a computadoras cuánticas reales por primera vez.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">2019</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Supremacía Cuántica</h3>
-                    <p class="timeline-description">Google Claims logra la "supremacía cuántica" con su procesador Sycamore de 53 qubits, realizando un cálculo en 200 segundos que tomaría 10,000 años a la supercomputadora más potente.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">2023</div>
-                <div class="timeline-content">
-                    <h3 class="timeline-title">Era de los 1000 Qubits</h3>
-                    <p class="timeline-description">IBM presenta su procesador cuántico Condor de 1,121 qubits, marcando el inicio de la era de los sistemas cuánticos de gran escala con aplicaciones comerciales potenciales.</p>
-                </div>
-            </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">1900</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Nacimiento de la Física Cuántica</h3>
+            <p class="timeline-description">
+              Max Planck introduce el concepto de cuantización de la energía
+              para explicar la radiación del cuerpo negro, marcando el inicio de
+              la era cuántica.
+            </p>
+            <span class="timeline-person">Max Planck</span>
+          </div>
         </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1905</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Efecto Fotoeléctrico</h3>
+            <p class="timeline-description">
+              Einstein explica el efecto fotoeléctrico usando la teoría cuántica
+              de Planck, estableciendo el concepto de dualidad onda-partícula
+              que es fundamental para la computación cuántica.
+            </p>
+            <span class="timeline-person">Albert Einstein</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1925</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Mecánica Cuántica Moderna</h3>
+            <p class="timeline-description">
+              Heisenberg, Schrödinger y Born desarrollan la formulación
+              matemática completa de la mecánica cuántica, incluyendo el
+              principio de superposición.
+            </p>
+            <span class="timeline-person">Werner Heisenberg</span>
+            <span class="timeline-person">Erwin Schrödinger</span>
+            <span class="timeline-person">Max Born</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1935</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Paradoja del Gato de Schrödinger</h3>
+            <p class="timeline-description">
+              Schrödinger formula su famosa paradoja para ilustrar las
+              implicaciones contraintuitivas de la superposición cuántica en
+              sistemas macroscópicos.
+            </p>
+            <span class="timeline-person">Erwin Schrödinger</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1982</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Propuesta de Feynman</h3>
+            <p class="timeline-description">
+              Richard Feynman propone que las computadoras cuánticas podrían
+              simular sistemas cuánticos de manera más eficiente que las
+              computadoras clásicas, sentando las bases conceptuales.
+            </p>
+            <span class="timeline-person">Richard Feynman</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1985</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Computación Cuántica Universal</h3>
+            <p class="timeline-description">
+              David Deutsch describe la primera computadora cuántica universal y
+              demuestra que podría resolver ciertos problemas exponencialmente
+              más rápido que las computadoras clásicas.
+            </p>
+            <span class="timeline-person">David Deutsch</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1994</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Algoritmo de Shor</h3>
+            <p class="timeline-description">
+              Peter Shor desarrolla un algoritmo cuántico para factorizar
+              números enteros grandes eficientemente, amenazando la seguridad de
+              la criptografía RSA actual.
+            </p>
+            <span class="timeline-person">Peter Shor</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1996</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Algoritmo de Grover</h3>
+            <p class="timeline-description">
+              Lov Grover presenta un algoritmo cuántico para búsqueda en bases
+              de datos no estructuradas que ofrece una aceleración cuadrática
+              sobre los métodos clásicos.
+            </p>
+            <span class="timeline-person">Lov Grover</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1998</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Primeros Qubits Físicos</h3>
+            <p class="timeline-description">
+              Los primeros sistemas cuánticos de 2-3 qubits se demuestran
+              experimentalmente, marcando la transición de la teoría a la
+              implementación práctica.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2001</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Primera Factorización Cuántica</h3>
+            <p class="timeline-description">
+              IBM demuestra el algoritmo de Shor factorizando el número 15
+              usando un computador cuántico de 7 qubits, probando la viabilidad
+              práctica de los algoritmos cuánticos.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2016</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">IBM Quantum Experience</h3>
+            <p class="timeline-description">
+              IBM lanza la primera plataforma de computación cuántica en la
+              nube, permitiendo al público acceder a computadoras cuánticas
+              reales por primera vez.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2019</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Supremacía Cuántica</h3>
+            <p class="timeline-description">
+              Google Claims logra la "supremacía cuántica" con su procesador
+              Sycamore de 53 qubits, realizando un cálculo en 200 segundos que
+              tomaría 10,000 años a la supercomputadora más potente.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Era de los 1000 Qubits</h3>
+            <p class="timeline-description">
+              IBM presenta su procesador cuántico Condor de 1,121 qubits,
+              marcando el inicio de la era de los sistemas cuánticos de gran
+              escala con aplicaciones comerciales potenciales.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Pioneros -->
     <section id="pioneros">
-        <h2 class="section-title">Pioneros y Visionarios</h2>
-        
-        <div class="interactive-demo">
-            <h3>Progreso de la Computación Cuántica</h3>
-            <p>Observa cómo ha evolucionado el número de qubits a lo largo del tiempo</p>
-            
-            <div class="progress-bar">
-                <div class="progress-fill" id="qubit-progress"></div>
-            </div>
-            
-            <p id="progress-text">1998: 2 qubits → 2023: 1,121 qubits</p>
-            <button class="demo-button" onclick="animateProgress()">Mostrar Evolución</button>
+      <h2 class="section-title">Pioneros y Visionarios</h2>
+
+      <div class="interactive-demo">
+        <h3>Progreso de la Computación Cuántica</h3>
+        <p>
+          Observa cómo ha evolucionado el número de qubits a lo largo del tiempo
+        </p>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="qubit-progress"></div>
         </div>
 
-        <div class="era-grid">
-            <div class="era-card">
-                <div class="era-icon">🧠</div>
-                <h3>Físicos Teóricos</h3>
-                <p>Planck, Einstein, Heisenberg, Schrödinger y otros establecieron los fundamentos de la mecánica cuántica que hicieron posible la computación cuántica.</p>
-            </div>
-            
-            <div class="era-card">
-                <div class="era-icon">💡</div>
-                <h3>Visionarios Computacionales</h3>
-                <p>Feynman, Deutsch, Shor y Grover conectaron la física cuántica con la ciencia de la computación, creando los primeros algoritmos cuánticos.</p>
-            </div>
-            
-            <div class="era-card">
-                <div class="era-icon">🔬</div>
-                <h3>Implementadores Modernos</h3>
-                <p>Equipos de IBM, Google, Rigetti, IonQ y otras compañías han convertido la teoría en sistemas cuánticos reales y funcionales.</p>
-            </div>
+        <p id="progress-text">1998: 2 qubits → 2023: 1,121 qubits</p>
+        <button class="demo-button" onclick="animateProgress()">
+          Mostrar Evolución
+        </button>
+      </div>
+
+      <div class="era-grid">
+        <div class="era-card">
+          <div class="era-icon">🧠</div>
+          <h3>Físicos Teóricos</h3>
+          <p>
+            Planck, Einstein, Heisenberg, Schrödinger y otros establecieron los
+            fundamentos de la mecánica cuántica que hicieron posible la
+            computación cuántica.
+          </p>
         </div>
+
+        <div class="era-card">
+          <div class="era-icon">💡</div>
+          <h3>Visionarios Computacionales</h3>
+          <p>
+            Feynman, Deutsch, Shor y Grover conectaron la física cuántica con la
+            ciencia de la computación, creando los primeros algoritmos
+            cuánticos.
+          </p>
+        </div>
+
+        <div class="era-card">
+          <div class="era-icon">🔬</div>
+          <h3>Implementadores Modernos</h3>
+          <p>
+            Equipos de IBM, Google, Rigetti, IonQ y otras compañías han
+            convertido la teoría en sistemas cuánticos reales y funcionales.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- Futuro -->
     <section id="futuro">
-        <h2 class="section-title">El Futuro Cuántico</h2>
-        
-        <div class="era-grid">
-            <div class="era-card">
-                <div class="era-icon era-future">🌐</div>
-                <h3>Internet Cuántico</h3>
-                <p>Redes de comunicación cuántica que conectarán computadoras cuánticas globalmente, permitiendo computación distribuida ultrasegura.</p>
-            </div>
-            
-            <div class="era-card">
-                <div class="era-icon era-future">🧬</div>
-                <h3>Simulación Molecular</h3>
-                <p>Diseño de nuevos materiales y fármacos mediante simulación cuántica precisa de sistemas moleculares complejos.</p>
-            </div>
-            
-            <div class="era-card">
-                <div class="era-icon era-future">🤖</div>
-                <h3>IA Cuántica</h3>
-                <p>Algoritmos de aprendizaje automático cuántico que revolucionarán la inteligencia artificial y el procesamiento de big data.</p>
-            </div>
+      <h2 class="section-title">El Futuro Cuántico</h2>
+
+      <div class="era-grid">
+        <div class="era-card">
+          <div class="era-icon era-future">🌐</div>
+          <h3>Internet Cuántico</h3>
+          <p>
+            Redes de comunicación cuántica que conectarán computadoras cuánticas
+            globalmente, permitiendo computación distribuida ultrasegura.
+          </p>
         </div>
+
+        <div class="era-card">
+          <div class="era-icon era-future">🧬</div>
+          <h3>Simulación Molecular</h3>
+          <p>
+            Diseño de nuevos materiales y fármacos mediante simulación cuántica
+            precisa de sistemas moleculares complejos.
+          </p>
+        </div>
+
+        <div class="era-card">
+          <div class="era-icon era-future">🤖</div>
+          <h3>IA Cuántica</h3>
+          <p>
+            Algoritmos de aprendizaje automático cuántico que revolucionarán la
+            inteligencia artificial y el procesamiento de big data.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Marco Mayta. Explorando la evolución histórica de la computación cuántica.</p>
-        <p style="margin-top: 1rem; color: var(--text-secondary);">Desde los primeros conceptos teóricos hasta las futuras revoluciones tecnológicas</p>
+      <p>
+        &copy; 2025 Marco Mayta. Explorando la evolución histórica de la
+        computación cuántica.
+      </p>
+      <p style="margin-top: 1rem; color: var(--text-secondary)">
+        Desde los primeros conceptos teóricos hasta las futuras revoluciones
+        tecnológicas
+      </p>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
             });
+          }
         });
+      });
 
-        // Timeline items animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+      // Timeline items animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.timeline-item').forEach(item => {
-            observer.observe(item);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateX(0)";
+          }
         });
+      }, observerOptions);
 
-        // Progress bar animation
-        function animateProgress() {
-            const progressFill = document.getElementById('qubit-progress');
-            const progressText = document.getElementById('progress-text');
-            
-            const milestones = [
-                { year: 1998, qubits: 2, percentage: 0.2 },
-                { year: 2001, qubits: 7, percentage: 0.6 },
-                { year: 2016, qubits: 16, percentage: 1.4 },
-                { year: 2019, qubits: 53, percentage: 4.7 },
-                { year: 2021, qubits: 127, percentage: 11.3 },
-                { year: 2023, qubits: 1121, percentage: 100 }
-            ];
+      document.querySelectorAll(".timeline-item").forEach((item) => {
+        observer.observe(item);
+      });
 
-            let currentStep = 0;
-            
-            function nextStep() {
-                if (currentStep < milestones.length) {
-                    const milestone = milestones[currentStep];
-                    progressFill.style.width = milestone.percentage + '%';
-                    progressText.textContent = `${milestone.year}: ${milestone.qubits} qubits`;
-                    currentStep++;
-                    
-                    setTimeout(nextStep, 1000);
-                } else {
-                    setTimeout(() => {
-                        progressFill.style.width = '0%';
-                        progressText.textContent = '1998: 2 qubits → 2023: 1,121 qubits';
-                        currentStep = 0;
-                    }, 2000);
-                }
-            }
-            
-            nextStep();
-        }
+      // Progress bar animation
+      function animateProgress() {
+        const progressFill = document.getElementById("qubit-progress");
+        const progressText = document.getElementById("progress-text");
 
-        // Auto-run progress animation on load
-        setTimeout(() => {
-            animateProgress();
-        }, 2000);
+        const milestones = [
+          { year: 1998, qubits: 2, percentage: 0.2 },
+          { year: 2001, qubits: 7, percentage: 0.6 },
+          { year: 2016, qubits: 16, percentage: 1.4 },
+          { year: 2019, qubits: 53, percentage: 4.7 },
+          { year: 2021, qubits: 127, percentage: 11.3 },
+          { year: 2023, qubits: 1121, percentage: 100 },
+        ];
 
-        // Floating particles animation
-        function createTimeParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'time-particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 8 + 's';
-            
-            document.querySelector('.quantum-bg').appendChild(particle);
-            
+        let currentStep = 0;
+
+        function nextStep() {
+          if (currentStep < milestones.length) {
+            const milestone = milestones[currentStep];
+            progressFill.style.width = milestone.percentage + "%";
+            progressText.textContent = `${milestone.year}: ${milestone.qubits} qubits`;
+            currentStep++;
+
+            setTimeout(nextStep, 1000);
+          } else {
             setTimeout(() => {
-                particle.remove();
-            }, 8000);
+              progressFill.style.width = "0%";
+              progressText.textContent = "1998: 2 qubits → 2023: 1,121 qubits";
+              currentStep = 0;
+            }, 2000);
+          }
         }
 
-        function createRegularParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 6 + 's';
-            
-            document.querySelector('.quantum-bg').appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 6000);
-        }
+        nextStep();
+      }
 
-        // Create particles periodically
-        setInterval(createTimeParticle, 4000);
-        setInterval(createRegularParticle, 3000);
+      // Auto-run progress animation on load
+      setTimeout(() => {
+        animateProgress();
+      }, 2000);
 
-        // Enhanced hover effects for timeline items
-        document.querySelectorAll('.timeline-content').forEach(content => {
-            content.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-                this.style.boxShadow = '0 15px 40px rgba(0, 255, 255, 0.3)';
-            });
-            
-            content.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(-5px) scale(1)';
-                this.style.boxShadow = '0 10px 30px rgba(0, 255, 255, 0.2)';
-            });
-        });
+      // Floating particles animation
+      function createTimeParticle() {
+        const particle = document.createElement("div");
+        particle.className = "time-particle";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.top = Math.random() * 100 + "%";
+        particle.style.animationDelay = Math.random() * 8 + "s";
 
-        // Enhanced hover effects for era cards
-        document.querySelectorAll('.era-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) rotateY(5deg)';
-                const icon = this.querySelector('.era-icon');
-                icon.style.transform = 'scale(1.2) rotateZ(10deg)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(-5px) rotateY(0deg)';
-                const icon = this.querySelector('.era-icon');
-                icon.style.transform = 'scale(1) rotateZ(0deg)';
-            });
-        });
+        document.querySelector(".quantum-bg").appendChild(particle);
 
-        // Header background opacity on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            const scrolled = window.pageYOffset;
-            const opacity = Math.min(scrolled / 100, 0.95);
-            header.style.background = `rgba(10, 10, 10, ${opacity})`;
-            
-            // Parallax effect for particles
-            const particles = document.querySelectorAll('.particle, .time-particle');
-            particles.forEach((particle, index) => {
-                const speed = (index % 3 + 1) * 0.3;
-                particle.style.transform += ` translateY(${scrolled * speed}px)`;
-            });
-        });
-
-        // Timeline year highlighting on scroll
-        window.addEventListener('scroll', () => {
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            const scrollPosition = window.pageYOffset + window.innerHeight / 2;
-            
-            timelineItems.forEach(item => {
-                const itemTop = item.offsetTop;
-                const itemBottom = itemTop + item.offsetHeight;
-                const year = item.querySelector('.timeline-year');
-                
-                if (scrollPosition >= itemTop && scrollPosition <= itemBottom) {
-                    year.style.background = 'linear-gradient(135deg, #ff0066, #ffd700)';
-                    year.style.transform = 'translate(-50%, -50%) scale(1.1)';
-                } else {
-                    year.style.background = 'linear-gradient(135deg, #0066ff, #00ffff)';
-                    year.style.transform = 'translate(-50%, -50%) scale(1)';
-                }
-            });
-        });
-
-        // Interactive timeline years - click to show more info
-        document.querySelectorAll('.timeline-year').forEach(year => {
-            year.addEventListener('click', function() {
-                const content = this.parentElement.querySelector('.timeline-content');
-                content.style.animation = 'pulse 0.5s ease';
-                
-                setTimeout(() => {
-                    content.style.animation = '';
-                }, 500);
-            });
-        });
-
-        // Add typing effect to hero subtitle
-        const heroSubtitle = document.querySelector('.hero p');
-        const originalText = heroSubtitle.textContent;
-        
-        function typeWriter(text, element, speed = 50) {
-            element.textContent = '';
-            let i = 0;
-            
-            function type() {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            
-            type();
-        }
-
-        // Start typing effect after hero animation
         setTimeout(() => {
-            typeWriter(originalText, heroSubtitle, 30);
-        }, 1000);
+          particle.remove();
+        }, 8000);
+      }
 
-        // Add quantum glitch effect to section titles
-        document.querySelectorAll('.section-title').forEach(title => {
-            title.addEventListener('mouseenter', function() {
-                this.style.animation = 'glitch 0.3s ease';
-                this.style.textShadow = '2px 2px 0 #00ffff, -2px -2px 0 #ff0066';
-            });
-            
-            title.addEventListener('mouseleave', function() {
-                this.style.animation = '';
-                this.style.textShadow = '';
-            });
+      function createRegularParticle() {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.top = Math.random() * 100 + "%";
+        particle.style.animationDelay = Math.random() * 6 + "s";
+
+        document.querySelector(".quantum-bg").appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 6000);
+      }
+
+      // Create particles periodically
+      setInterval(createTimeParticle, 4000);
+      setInterval(createRegularParticle, 3000);
+
+      // Enhanced hover effects for timeline items
+      document.querySelectorAll(".timeline-content").forEach((content) => {
+        content.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-8px) scale(1.02)";
+          this.style.boxShadow = "0 15px 40px rgba(0, 255, 255, 0.3)";
         });
 
-        // Add glitch keyframes
-        const style = document.createElement('style');
-        style.textContent = `
+        content.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(-5px) scale(1)";
+          this.style.boxShadow = "0 10px 30px rgba(0, 255, 255, 0.2)";
+        });
+      });
+
+      // Enhanced hover effects for era cards
+      document.querySelectorAll(".era-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-8px) rotateY(5deg)";
+          const icon = this.querySelector(".era-icon");
+          icon.style.transform = "scale(1.2) rotateZ(10deg)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(-5px) rotateY(0deg)";
+          const icon = this.querySelector(".era-icon");
+          icon.style.transform = "scale(1) rotateZ(0deg)";
+        });
+      });
+
+      // Header background opacity on scroll
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        const scrolled = window.pageYOffset;
+        const opacity = Math.min(scrolled / 100, 0.95);
+        header.style.background = `rgba(10, 10, 10, ${opacity})`;
+
+        // Parallax effect for particles
+        const particles = document.querySelectorAll(
+          ".particle, .time-particle"
+        );
+        particles.forEach((particle, index) => {
+          const speed = ((index % 3) + 1) * 0.3;
+          particle.style.transform += ` translateY(${scrolled * speed}px)`;
+        });
+      });
+
+      // Timeline year highlighting on scroll
+      window.addEventListener("scroll", () => {
+        const timelineItems = document.querySelectorAll(".timeline-item");
+        const scrollPosition = window.pageYOffset + window.innerHeight / 2;
+
+        timelineItems.forEach((item) => {
+          const itemTop = item.offsetTop;
+          const itemBottom = itemTop + item.offsetHeight;
+          const year = item.querySelector(".timeline-year");
+
+          if (scrollPosition >= itemTop && scrollPosition <= itemBottom) {
+            year.style.background = "linear-gradient(135deg, #ff0066, #ffd700)";
+            year.style.transform = "translate(-50%, -50%) scale(1.1)";
+          } else {
+            year.style.background = "linear-gradient(135deg, #0066ff, #00ffff)";
+            year.style.transform = "translate(-50%, -50%) scale(1)";
+          }
+        });
+      });
+
+      // Interactive timeline years - click to show more info
+      document.querySelectorAll(".timeline-year").forEach((year) => {
+        year.addEventListener("click", function () {
+          const content = this.parentElement.querySelector(".timeline-content");
+          content.style.animation = "pulse 0.5s ease";
+
+          setTimeout(() => {
+            content.style.animation = "";
+          }, 500);
+        });
+      });
+
+      // Add typing effect to hero subtitle
+      const heroSubtitle = document.querySelector(".hero p");
+      const originalText = heroSubtitle.textContent;
+
+      function typeWriter(text, element, speed = 50) {
+        element.textContent = "";
+        let i = 0;
+
+        function type() {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          }
+        }
+
+        type();
+      }
+
+      // Start typing effect after hero animation
+      setTimeout(() => {
+        typeWriter(originalText, heroSubtitle, 30);
+      }, 1000);
+
+      // Add quantum glitch effect to section titles
+      document.querySelectorAll(".section-title").forEach((title) => {
+        title.addEventListener("mouseenter", function () {
+          this.style.animation = "glitch 0.3s ease";
+          this.style.textShadow = "2px 2px 0 #00ffff, -2px -2px 0 #ff0066";
+        });
+
+        title.addEventListener("mouseleave", function () {
+          this.style.animation = "";
+          this.style.textShadow = "";
+        });
+      });
+
+      // Add glitch keyframes
+      const style = document.createElement("style");
+      style.textContent = `
             @keyframes glitch {
                 0%, 100% { transform: translateX(0); }
                 20% { transform: translateX(-2px); }
@@ -1004,7 +1207,7 @@
                 80% { transform: translateX(1px); }
             }
         `;
-        document.head.appendChild(style);
+      document.head.appendChild(style);
     </script>
-</body>
+  </body>
 </html>

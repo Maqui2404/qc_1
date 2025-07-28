@@ -361,7 +361,7 @@
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">QuantumWeb</div>
+            <div class="logo">QuantuM</div>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#conceptos">Conceptos</a></li>
@@ -393,19 +393,20 @@
         </div>
         
         <div class="hero-content">
-            <h1>Quantum Computing</h1>
+            <h1>Computación Cuántica</h1>
+            <p>by Marco Mayta</p>
             <p>Explorando el futuro de la computación cuántica</p>
             
             <div class="social-links">
-                <a href="#" class="social-link">
+                <a href="https://github.com/Maqui2404" class="social-link">
                     <i class="fab fa-github"></i>
                     <span>GitHub</span>
                 </a>
-                <a href="#" class="social-link">
+                <a href="https://www.linkedin.com/in/marco-mayta-835781170/" class="social-link">
                     <i class="fab fa-linkedin"></i>
                     <span>LinkedIn</span>
                 </a>
-                <a href="#" class="social-link">
+                <a href="https://maqui2404.github.io/PortafolioMarco.github.io/" class="social-link">
                     <i class="fas fa-briefcase"></i>
                     <span>Portafolio</span>
                 </a>
@@ -545,14 +546,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Marco Mayta. Explorando el universo cuántico, un qubit a la vez.</p>
         <p style="margin-top: 1rem; color: var(--text-secondary);">Construido con pasión por la física cuántica y el desarrollo web</p>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -566,7 +565,6 @@
             });
         });
 
-        // Interactive wave animation control
         let waveActive = true;
         function toggleWave() {
             const wave = document.querySelector('.wave');
@@ -585,7 +583,6 @@
             }
         }
 
-        // Add more interactive particles on scroll
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const particles = document.querySelectorAll('.particle');
@@ -596,7 +593,6 @@
             });
         });
 
-        // Dynamic background effect
         function createQuantumParticle() {
             const particle = document.createElement('div');
             particle.className = 'particle';
@@ -611,10 +607,8 @@
             }, 6000);
         }
 
-        // Create particles periodically
         setInterval(createQuantumParticle, 3000);
 
-        // Add hover effects to cards
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.boxShadow = '0 10px 30px rgba(0, 255, 255, 0.3)';
@@ -625,7 +619,6 @@
             });
         });
 
-        // Header background opacity on scroll
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             const scrolled = window.pageYOffset;
