@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos Físicos de la Computación Cuántica | Tu Nombre</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0066ff;
+            --secondary-color: #00ffff;
+            --accent-color: #ff0066;
+            --formula-color: #00ff88;
+            --bg-dark: #0a0a0a;
+            --bg-light: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(0, 102, 255, 0.1), transparent);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Quantum Animations Container */
+        .quantum-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .wave-function {
+            position: absolute;
+            top: 15%;
+            right: 10%;
+            width: 400px;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .wave-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateWave 30s linear infinite;
+        }
+
+        .wave-line {
+            position: absolute;
+            width: 300px;
+            height: 2px;
+            background: var(--formula-color);
+            left: 50%;
+            top: 50%;
+            transform-origin: left center;
+            animation: waveOscillation 3s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--formula-color);
+        }
+
+        .wave-1 { transform: translateX(-150px) rotateZ(0deg); animation-delay: 0s; }
+        .wave-2 { transform: translateX(-150px) rotateZ(30deg); animation-delay: 0.2s; }
+        .wave-3 { transform: translateX(-150px) rotateZ(60deg); animation-delay: 0.4s; }
+        .wave-4 { transform: translateX(-150px) rotateZ(90deg); animation-delay: 0.6s; }
+        .wave-5 { transform: translateX(-150px) rotateZ(120deg); animation-delay: 0.8s; }
+        .wave-6 { transform: translateX(-150px) rotateZ(150deg); animation-delay: 1s; }
+
+        .formula-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--formula-color);
+            border-radius: 50%;
+            animation: formulaFloat 10s ease-in-out infinite;
+            box-shadow: 0 0 12px var(--formula-color);
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 0 6px var(--secondary-color);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .formula-card {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formula-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .formula-card:hover::before {
+            left: 100%;
+        }
+
+        .formula-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--formula-color);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.3);
+        }
+
+        .formula-title {
+            font-size: 1.8rem;
+            color: var(--formula-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .formula-icon {
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .formula-math {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--formula-color);
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: var(--formula-color);
+            position: relative;
+        }
+
+        .formula-math::before {
+            content: '∫';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .formula-explanation {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-top: 1rem;
+        }
+
+        .formula-variables {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .variable {
+            display: inline-block;
+            margin: 0.2rem 0.5rem;
+            color: var(--secondary-color);
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .physics-principle {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .physics-principle:hover {
+            transform: translateY(-5px) rotateY(5deg);
+            border-color: var(--secondary-color);
+        }
+
+        .principle-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            animation: oscillate 3s ease-in-out infinite;
+        }
+
+        /* Interactive Demonstrations */
+        .interactive-demo {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .demo-button {
+            background: var(--gradient);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 1rem;
+        }
+
+        .demo-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.4);
+        }
+
+        .visualization-container {
+            width: 100%;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .probability-wave {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--formula-color), transparent);
+            animation: probWave 4s linear infinite;
+            opacity: 0.7;
+        }
+
+        .quantum-state {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            animation: quantumTunneling 5s ease-in-out infinite;
+            box-shadow: 0 0 20px var(--accent-color);
+        }
+
+        /* Mathematical expressions styling */
+        .mjx-chtml {
+            color: var(--formula-color) !important;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-light);
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotateWave {
+            from { transform: rotateY(0deg) rotateX(10deg); }
+            to { transform: rotateY(360deg) rotateX(10deg); }
+        }
+
+        @keyframes waveOscillation {
+            0%, 100% { 
+                transform: translateX(-150px) scaleY(1) rotateZ(var(--rotation, 0deg)); 
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translateX(-150px) scaleY(2) rotateZ(var(--rotation, 0deg)); 
+                opacity: 1;
+            }
+        }
+
+        @keyframes formulaFloat {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg); 
+                opacity: 0.8;
+            }
+            25% { 
+                transform: translateY(-30px) translateX(20px) rotate(90deg); 
+                opacity: 1;
+            }
+            50% { 
+                transform: translateY(-20px) translateX(-20px) rotate(180deg); 
+                opacity: 0.6;
+            }
+            75% { 
+                transform: translateY(-40px) translateX(10px) rotate(270deg); 
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-10px) translateX(-10px); }
+            75% { transform: translateY(-30px) translateX(5px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes oscillate {
+            0%, 100% { transform: translateY(0px) rotateZ(0deg); }
+            25% { transform: translateY(-10px) rotateZ(5deg); }
+            50% { transform: translateY(0px) rotateZ(0deg); }
+            75% { transform: translateY(-5px) rotateZ(-5deg); }
+        }
+
+        @keyframes probWave {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes quantumTunneling {
+            0%, 100% { left: 10px; opacity: 1; }
+            45% { left: 45%; opacity: 0.3; }
+            55% { left: 55%; opacity: 0.3; }
+            100% { left: calc(100% - 30px); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .wave-function { display: none; }
+            .nav-links { display: none; }
+            .social-links { flex-direction: column; gap: 1rem; }
+            section { padding-left: 1rem; padding-right: 1rem; }
+            .concept-grid { grid-template-columns: 1fr; }
+            .formula-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                packages: {'[+]': ['ams', 'newcommand', 'configmacros']}
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Física Cuántica</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#principios">Principios</a></li>
+                <li><a href="#formulas">Fórmulas</a></li>
+                <li><a href="#aplicaciones">Aplicaciones</a></li>
+                <li><a href="#demos">Demos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="quantum-bg">
+            <div class="wave-function">
+                <div class="wave-container">
+                    <div class="wave-line wave-1"></div>
+                    <div class="wave-line wave-2"></div>
+                    <div class="wave-line wave-3"></div>
+                    <div class="wave-line wave-4"></div>
+                    <div class="wave-line wave-5"></div>
+                    <div class="wave-line wave-6"></div>
+                </div>
+            </div>
+            <!-- Formula particles -->
+            <div class="formula-particle" style="top: 20%; left: 20%; animation-delay: 0s;"></div>
+            <div class="formula-particle" style="top: 60%; left: 80%; animation-delay: 3s;"></div>
+            <div class="formula-particle" style="top: 80%; left: 30%; animation-delay: 6s;"></div>
+            <div class="formula-particle" style="top: 40%; left: 70%; animation-delay: 9s;"></div>
+            <!-- Regular particles -->
+            <div class="particle" style="top: 30%; left: 10%; animation-delay: 1s;"></div>
+            <div class="particle" style="top: 70%; left: 90%; animation-delay: 4s;"></div>
+            <div class="particle" style="top: 90%; left: 20%; animation-delay: 7s;"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>Fundamentos Físicos</h1>
+            <p>Las matemáticas y principios físicos que hacen posible la computación cuántica</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Portafolio</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principios Fundamentales -->
+    <section id="principios">
+        <h2 class="section-title">Principios Cuánticos Fundamentales</h2>
+        
+        <div class="concept-grid">
+            <div class="physics-principle">
+                <div class="principle-icon">🌊</div>
+                <h3>Dualidad Onda-Partícula</h3>
+                <p>Los objetos cuánticos exhiben propiedades tanto de ondas como de partículas, dependiendo del contexto experimental. Esta dualidad es fundamental para entender el comportamiento de los qubits.</p>
+            </div>
+            
+            <div class="physics-principle">
+                <div class="principle-icon">🎲</div>
+                <h3>Principio de Incertidumbre</h3>
+                <p>No es posible conocer simultáneamente con precisión absoluta ciertos pares de propiedades conjugadas, como posición y momento, estableciendo límites fundamentales en la medición.</p>
+            </div>
+            
+            <div class="physics-principle">
+                <div class="principle-icon">⚖️</div>
+                <h3>Superposición Cuántica</h3>
+                <p>Un sistema cuántico puede existir en múltiples estados simultáneamente hasta que se realiza una medición, colapsando la función de onda a un estado definido.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fórmulas Fundamentales -->
+    <section id="formulas">
+        <h2 class="section-title">Matemáticas de la Mecánica Cuántica</h2>
+        
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">📐</span>
+                Ecuación de Schrödinger
+            </h3>
+            <div class="formula-math">
+                $$i\hbar\frac{\partial}{\partial t}|\psi(t)\rangle = \hat{H}|\psi(t)\rangle$$
+            </div>
+            <p class="formula-explanation">
+                Esta es la ecuación fundamental que gobierna la evolución temporal de los sistemas cuánticos. Describe cómo cambia el estado cuántico $|\psi(t)\rangle$ en el tiempo bajo la influencia del Hamiltoniano $\hat{H}$.
+            </p>
+            <div class="formula-variables">
+                <span class="variable">$i$ = unidad imaginaria</span>
+                <span class="variable">$\hbar$ = constante de Planck reducida</span>
+                <span class="variable">$|\psi(t)\rangle$ = estado cuántico</span>
+                <span class="variable">$\hat{H}$ = operador Hamiltoniano</span>
+            </div>
+        </div>
+
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">🎯</span>
+                Postulado de Born (Probabilidades)
+            </h3>
+            <div class="formula-math">
+                $$P(a_n) = |\langle a_n|\psi\rangle|^2$$
+            </div>
+            <p class="formula-explanation">
+                La probabilidad de obtener el resultado $a_n$ al medir un observable en el estado $|\psi\rangle$ está dada por el cuadrado del módulo del producto interno entre el estado y el autoestado correspondiente.
+            </p>
+            <div class="formula-variables">
+                <span class="variable">$P(a_n)$ = probabilidad del resultado $a_n$</span>
+                <span class="variable">$|a_n\rangle$ = autoestado del observable</span>
+                <span class="variable">$\langle a_n|\psi\rangle$ = amplitud de probabilidad</span>
+            </div>
+        </div>
+
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">🔄</span>
+                Evolución Unitaria
+            </h3>
+            <div class="formula-math">
+                $$|\psi(t)\rangle = U(t)|\psi(0)\rangle = e^{-i\hat{H}t/\hbar}|\psi(0)\rangle$$
+            </div>
+            <p class="formula-explanation">
+                La evolución temporal de un sistema cuántico cerrado es unitaria, preservando la norma del estado cuántico. El operador de evolución temporal $U(t)$ es la exponencial del Hamiltoniano.
+            </p>
+            <div class="formula-variables">
+                <span class="variable">$U(t)$ = operador de evolución temporal</span>
+                <span class="variable">$e^{-i\hat{H}t/\hbar}$ = exponencial de matriz</span>
+                <span class="variable">$|\psi(0)\rangle$ = estado inicial</span>
+            </div>
+        </div>
+
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">🔗</span>
+                Estados Entrelazados
+            </h3>
+            <div class="formula-math">
+                $$|\psi\rangle_{AB} = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+            </div>
+            <p class="formula-explanation">
+                Un estado de Bell típico que representa máximo entrelazamiento entre dos qubits. Este estado no puede expresarse como producto tensorial de estados individuales, característica definitoria del entrelazamiento.
+            </p>
+            <div class="formula-variables">
+                <span class="variable">$|\psi\rangle_{AB}$ = estado bipartito entrelazado</span>
+                <span class="variable">$|00\rangle, |11\rangle$ = estados de la base computacional</span>
+                <span class="variable">$\frac{1}{\sqrt{2}}$ = factor de normalización</span>
+            </div>
+        </div>
+
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">🎪</span>
+                Puertas Cuánticas Básicas
+            </h3>
+            <div class="formula-math">
+                $$X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, \quad H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$
+            </div>
+            <p class="formula-explanation">
+                Las puertas cuánticas fundamentales: Pauli-X (NOT cuántico), Pauli-Z (flip de fase), y Hadamard (creador de superposición). Estas matrices unitarias transforman los estados de los qubits.
+            </p>
+            <div class="formula-variables">
+                <span class="variable">$X$ = puerta Pauli-X (NOT)</span>
+                <span class="variable">$Z$ = puerta Pauli-Z (flip de fase)</span>
+                <span class="variable">$H$ = puerta Hadamard</span>
+            </div>
+        </div>
+
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">📏</span>
+                Principio de Incertidumbre de Heisenberg
+            </h3>
+            <div class="formula-math">
+                $$\Delta A \cdot \Delta B \geq \frac{1}{2}|\langle[\hat{A},\hat{B}]\rangle|$$
+            </div>
+            <p class="formula-explanation">
+                Para cualquier par de observables no conmutativos, existe un límite fundamental en la precisión con que pueden medirse simultáneamente. Esta relación establece la naturaleza probabilística intrínseca de la mecánica cuántica.
+            </p>
+            <div class="formula-variables">
+                <span class="variable">$\Delta A, \Delta B$ = desviaciones estándar</span>
+                <span class="variable">$[\hat{A},\hat{B}]$ = conmutador de operadores</span>
+                <span class="variable">$\langle\rangle$ = valor esperado</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aplicaciones en Computación Cuántica -->
+    <section id="aplicaciones">
+        <h2 class="section-title">Aplicaciones en Computación Cuántica</h2>
+        
+        <div class="concept-grid">
+            <div class="formula-card">
+                <h3 class="formula-title">
+                    <span class="formula-icon">🔢</span>
+                    Algoritmo de Shor - Transformada de Fourier Cuántica
+                </h3>
+                <div class="formula-math">
+                    $$QFT|j\rangle = \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1} e^{2\pi ijk/N}|k\rangle$$
+                </div>
+                <p class="formula-explanation">
+                    La Transformada de Fourier Cuántica es el corazón del algoritmo de Shor para factorización. Permite encontrar periodicidades en funciones de forma exponencialmente más eficiente que algoritmos clásicos.
+                </p>
+            </div>
+            
+            <div class="formula-card">
+                <h3 class="formula-title">
+                    <span class="formula-icon">🔍</span>
+                    Algoritmo de Grover - Operador de Difusión
+                </h3>
+                <div class="formula-math">
+                    $G = -AS_0A^{-1}S_f$
+                </div>
+                <p class="formula-explanation">
+                    El operador de Grover combina la reflexión sobre el estado marcado ($S_f$) y la difusión sobre el estado promedio ($S_0$), proporcionando amplificación cuadrática de amplitudes para búsqueda en bases de datos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demostraciones Interactivas -->
+    <section id="demos">
+        <h2 class="section-title">Demostraciones Interactivas</h2>
+        
+        <div class="interactive-demo">
+            <h3>Simulación de Superposición Cuántica</h3>
+            <p>Observa cómo un qubit puede existir en múltiples estados simultáneamente</p>
+            
+            <div class="visualization-container">
+                <div class="probability-wave"></div>
+                <div class="quantum-state"></div>
+            </div>
+            
+            <button class="demo-button" onclick="toggleSuperposition()">Colapsar/Restaurar Superposición</button>
+            <button class="demo-button" onclick="changeWaveFunction()">Cambiar Función de Onda</button>
+        </div>
+
+        <div class="interactive-demo">
+            <h3>Visualización del Túnel Cuántico</h3>
+            <p>Una partícula cuántica puede atravesar barreras que clásicamente serían impenetrables</p>
+            
+            <div class="visualization-container" id="tunnel-demo">
+                <div style="position: absolute; left: 40%; top: 0; width: 20%; height: 100%; background: rgba(255, 255, 255, 0.2); border-radius: 5px;"></div>
+                <div class="quantum-state" id="tunneling-particle"></div>
+            </div>
+            
+            <button class="demo-button" onclick="demonstrateTunneling()">Demostrar Túnel Cuántico</button>
+        </div>
+
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">🌡️</span>
+                Decoherencia y Corrección de Errores
+            </h3>
+            <div class="formula-math">
+                $\rho(t) = \sum_k E_k(t) \rho(0) E_k^\dagger(t)$
+            </div>
+            <p class="formula-explanation">
+                La decoherencia describe cómo los sistemas cuánticos pierden sus propiedades cuánticas debido a la interacción con el entorno. Los operadores de Kraus $E_k(t)$ modelan estos efectos.
+            </p>
+            <div class="formula-variables">
+                <span class="variable">$\rho(t)$ = matriz densidad dependiente del tiempo</span>
+                <span class="variable">$E_k(t)$ = operadores de Kraus</span>
+                <span class="variable">$\rho(0)$ = estado inicial</span>
+            </div>
+        </div>
+
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">🎭</span>
+                Medición Cuántica - Colapso de la Función de Onda
+            </h3>
+            <div class="formula-math">
+                $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle \xrightarrow{\text{medición}} \begin{cases} |0\rangle & \text{con probabilidad } |\alpha|^2 \\ |1\rangle & \text{con probabilidad } |\beta|^2 \end{cases}$
+            </div>
+            <p class="formula-explanation">
+                Durante la medición, el estado de superposición colapsa probabilísticamente a uno de los estados base. Este proceso irreversible es fundamental para extraer información clásica de sistemas cuánticos.
+            </p>
+            <div class="formula-variables">
+                <span class="variable">$\alpha, \beta$ = amplitudes de probabilidad complejas</span>
+                <span class="variable">$|\alpha|^2 + |\beta|^2 = 1$ = condición de normalización</span>
+            </div>
+        </div>
+
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">🧮</span>
+                Complejidad Computacional Cuántica
+            </h3>
+            <div class="formula-math">
+                $\text{BQP} \subseteq \text{PSPACE}$
+                $\text{P} \subseteq \text{BQP}$
+            </div>
+            <p class="formula-explanation">
+                Las clases de complejidad cuántica: BQP (Bounded-error Quantum Polynomial time) contiene problemas resolubles eficientemente por computadoras cuánticas. Se sospecha que BQP ≠ P, implicando ventaja cuántica genuina.
+            </p>
+            <div class="formula-variables">
+                <span class="variable">BQP = problemas cuánticos polinomiales</span>
+                <span class="variable">P = problemas clásicos polinomiales</span>
+                <span class="variable">PSPACE = problemas con espacio polinomial</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fundamentos Matemáticos Avanzados -->
+    <section>
+        <h2 class="section-title">Fundamentos Matemáticos Avanzados</h2>
+        
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">🎪</span>
+                Álgebra de Pauli y Grupo SU(2)
+            </h3>
+            <div class="formula-math">
+                $\sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
+                $[\sigma_i, \sigma_j] = 2i\epsilon_{ijk}\sigma_k$
+            </div>
+            <p class="formula-explanation">
+                Las matrices de Pauli forman la base del álgebra de Lie su(2) y generan todas las rotaciones de qubits. Sus relaciones de conmutación definen la estructura algebraica fundamental de los sistemas de spin-1/2.
+            </p>
+        </div>
+
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">🎯</span>
+                Entropía de von Neumann
+            </h3>
+            <div class="formula-math">
+                $S(\rho) = -\text{Tr}(\rho \log_2 \rho) = -\sum_i \lambda_i \log_2 \lambda_i$
+            </div>
+            <p class="formula-explanation">
+                La entropía de von Neumann cuantifica el entrelazamiento y la información cuántica en un sistema. Para estados puros es cero, y alcanza su máximo para estados maximalmente mezclados.
+            </p>
+            <div class="formula-variables">
+                <span class="variable">$\rho$ = matriz densidad del sistema</span>
+                <span class="variable">$\lambda_i$ = autovalores de $\rho$</span>
+                <span class="variable">Tr = traza de la matriz</span>
+            </div>
+        </div>
+
+        <div class="formula-card">
+            <h3 class="formula-title">
+                <span class="formula-icon">🔗</span>
+                Medida de Concurrencia (Entrelazamiento)
+            </h3>
+            <div class="formula-math">
+                $C(\rho) = \max\{0, \sqrt{\lambda_1} - \sqrt{\lambda_2} - \sqrt{\lambda_3} - \sqrt{\lambda_4}\}$
+            </div>
+            <p class="formula-explanation">
+                La concurrencia mide cuantitativamente el grado de entrelazamiento en sistemas bipartitos de dos qubits, variando de 0 (separable) a 1 (maximalmente entrelazado).
+            </p>
+            <div class="formula-variables">
+                <span class="variable">$\lambda_i$ = autovalores ordenados de $\rho(\sigma_y \otimes \sigma_y)\rho^*(\sigma_y \otimes \sigma_y)$</span>
+                <span class="variable">$\rho^*$ = conjugado complejo de $\rho$</span>
+            </div>
+        </div>
+
+        <div class="interactive-demo">
+            <h3>Calculadora de Estados Cuánticos</h3>
+            <p>Explora las propiedades matemáticas de diferentes estados cuánticos</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                <div>
+                    <h4>Estado |+⟩ (Superposición)</h4>
+                    <div class="formula-math">$|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$</div>
+                    <p>Entropía: 1 bit</p>
+                </div>
+                <div>
+                    <h4>Estado de Bell</h4>
+                    <div class="formula-math">$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$</div>
+                    <p>Concurrencia: 1 (máximo entrelazamiento)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Tu Nombre. Explorando los fundamentos matemáticos de la computación cuántica.</p>
+        <p style="margin-top: 1rem; color: var(--text-secondary);">Donde las matemáticas abstractas se encuentran con la tecnología revolucionaria</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Superposition demo functionality
+        let superpositionActive = true;
+        function toggleSuperposition() {
+            const wave = document.querySelector('.probability-wave');
+            const button = event.target;
+            
+            if (superpositionActive) {
+                wave.style.animationPlayState = 'paused';
+                wave.style.opacity = '0.2';
+                button.textContent = 'Restaurar Superposición';
+                superpositionActive = false;
+            } else {
+                wave.style.animationPlayState = 'running';
+                wave.style.opacity = '0.7';
+                button.textContent = 'Colapsar Superposición';
+                superpositionActive = true;
+            }
+        }
+
+        // Wave function change demo
+        let waveType = 0;
+        function changeWaveFunction() {
+            const wave = document.querySelector('.probability-wave');
+            const waveTypes = [
+                'linear-gradient(90deg, transparent, #00ff88, transparent)',
+                'linear-gradient(90deg, transparent, #ff0066, #00ffff, transparent)',
+                'radial-gradient(ellipse, #00ff88, transparent)',
+                'linear-gradient(45deg, transparent, #00ff88, transparent, #ff0066, transparent)'
+            ];
+            
+            waveType = (waveType + 1) % waveTypes.length;
+            wave.style.background = waveTypes[waveType];
+        }
+
+        // Quantum tunneling demonstration
+        function demonstrateTunneling() {
+            const particle = document.getElementById('tunneling-particle');
+            const button = event.target;
+            
+            button.disabled = true;
+            button.textContent = 'Tunelando...';
+            
+            // Reset position
+            particle.style.left = '10px';
+            particle.style.opacity = '1';
+            
+            // Animate tunneling
+            setTimeout(() => {
+                particle.style.transition = 'left 3s ease-in-out, opacity 0.5s ease-in-out';
+                particle.style.left = 'calc(100% - 30px)';
+                
+                // Show quantum tunneling effect through barrier
+                setTimeout(() => {
+                    particle.style.opacity = '0.3';
+                }, 1000);
+                
+                setTimeout(() => {
+                    particle.style.opacity = '1';
+                }, 2000);
+                
+                setTimeout(() => {
+                    button.disabled = false;
+                    button.textContent = 'Demostrar Túnel Cuántico';
+                    particle.style.transition = '';
+                }, 3000);
+            }, 100);
+        }
+
+        // Formula card animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.formula-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+
+        // Enhanced hover effects for formula cards
+        document.querySelectorAll('.formula-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.formula-icon');
+                icon.style.transform = 'scale(1.3) rotateY(180deg)';
+                icon.style.transition = 'transform 0.3s ease';
+                
+                // Add glow effect to formulas
+                const formula = this.querySelector('.formula-math');
+                formula.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.4)';
+                formula.style.transition = 'box-shadow 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.formula-icon');
+                icon.style.transform = 'scale(1) rotateY(0deg)';
+                
+                const formula = this.querySelector('.formula-math');
+                formula.style.boxShadow = 'none';
+            });
+        });
+
+        // Floating particles animation
+        function createFormulaParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'formula-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            
+            document.querySelector('.quantum-bg').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 10000);
+        }
+
+        function createRegularParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            
+            document.querySelector('.quantum-bg').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        // Create particles periodically
+        setInterval(createFormulaParticle, 5000);
+        setInterval(createRegularParticle, 3000);
+
+        // Header background opacity on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrolled = window.pageYOffset;
+            const opacity = Math.min(scrolled / 100, 0.95);
+            header.style.background = `rgba(10, 10, 10, ${opacity})`;
+            
+            // Parallax effect for wave function
+            const waveFunction = document.querySelector('.wave-function');
+            if (waveFunction) {
+                const parallaxSpeed = scrolled * 0.2;
+                waveFunction.style.transform = `translateY(${parallaxSpeed}px) rotateY(${scrolled * 0.1}deg)`;
+            }
+        });
+
+        // Add quantum glitch effect to math formulas
+        document.querySelectorAll('.formula-math').forEach(formula => {
+            formula.addEventListener('click', function() {
+                this.style.animation = 'quantumGlitch 0.5s ease';
+                
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 500);
+            });
+        });
+
+        // Add quantum glitch keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes quantumGlitch {
+                0%, 100% { transform: translateX(0) scale(1); filter: hue-rotate(0deg); }
+                10% { transform: translateX(-2px) scale(1.02); filter: hue-rotate(90deg); }
+                20% { transform: translateX(2px) scale(0.98); filter: hue-rotate(180deg); }
+                30% { transform: translateX(-1px) scale(1.01); filter: hue-rotate(270deg); }
+                40% { transform: translateX(1px) scale(0.99); filter: hue-rotate(360deg); }
+                50% { transform: translateX(0) scale(1.05); filter: hue-rotate(180deg); }
+                60% { transform: translateX(-1px) scale(0.95); filter: hue-rotate(90deg); }
+                80% { transform: translateX(1px) scale(1.02); filter: hue-rotate(270deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Interactive variable highlighting
+        document.querySelectorAll('.variable').forEach(variable => {
+            variable.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = 'rgba(0, 255, 255, 0.2)';
+                this.style.transform = 'scale(1.1)';
+                this.style.borderRadius = '4px';
+                this.style.padding = '2px 4px';
+                this.style.transition = 'all 0.2s ease';
+            });
+            
+            variable.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = 'transparent';
+                this.style.transform = 'scale(1)';
+                this.style.padding = '0';
+            });
+        });
+
+        // MathJax rendering completion callback
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.MathJax) {
+                MathJax.startup.promise.then(() => {
+                    console.log('MathJax rendering complete');
+                    // Add any post-render effects here
+                });
+            }
+        });
+    </script>
+</body>
+</html>

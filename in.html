@@ -1,0 +1,1265 @@
+<!-- Algoritmos Cuánticos Avanzados -->
+    <section id="algoritmos">
+        <h2 class="section-title">Algoritmos Cuánticos Revolucionarios</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>🔢 Algorit<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computación Cuántica | Tu Nombre</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0066ff;
+            --secondary-color: #00ffff;
+            --accent-color: #ff0066;
+            --bg-dark: #0a0a0a;
+            --bg-light: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(0, 102, 255, 0.1), transparent);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Quantum Animations Container */
+        .quantum-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bloch-sphere {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .sphere {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateSphere 20s linear infinite;
+        }
+
+        .sphere-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            margin: -100px 0 0 -100px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .ring-1 { transform: rotateX(0deg); }
+        .ring-2 { transform: rotateX(60deg); }
+        .ring-3 { transform: rotateX(120deg); }
+
+        .qubit-vector {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 3px;
+            height: 100px;
+            background: var(--accent-color);
+            transform-origin: bottom center;
+            animation: qubitPrecession 4s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 0 6px var(--secondary-color);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quantum-concept {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .concept-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .demo-button {
+            background: var(--gradient);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+            margin: 1rem;
+        }
+
+        .demo-button:hover {
+            transform: scale(1.05);
+        }
+
+        .wave-animation {
+            width: 100%;
+            height: 100px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 102, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+            animation: wave 3s linear infinite;
+            opacity: 0.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-light);
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotateSphere {
+            from { transform: rotateY(0deg) rotateX(20deg); }
+            to { transform: rotateY(360deg) rotateX(20deg); }
+        }
+
+        @keyframes qubitPrecession {
+            0%, 100% { transform: rotateZ(0deg) rotateX(30deg); }
+            50% { transform: rotateZ(180deg) rotateX(60deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-10px) translateX(-10px); }
+            75% { transform: translateY(-30px) translateX(5px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .interference-pattern {
+            position: absolute;
+            top: 40%;
+            left: 5%;
+            width: 250px;
+            height: 150px;
+        }
+
+        .wave-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-color);
+            transform-origin: left center;
+            animation: interferenceWave 3s ease-in-out infinite;
+        }
+
+        .wave-line:nth-child(1) {
+            top: 30%;
+            animation-delay: 0s;
+        }
+
+        .wave-line:nth-child(2) {
+            top: 50%;
+            animation-delay: 0.5s;
+        }
+
+        .wave-line:nth-child(3) {
+            top: 70%;
+            animation-delay: 1s;
+            background: var(--accent-color);
+        }
+
+        .quantum-tunnel {
+            position: absolute;
+            bottom: 20%;
+            right: 5%;
+            width: 200px;
+            height: 100px;
+            perspective: 500px;
+        }
+
+        .tunnel-ring {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: tunnelEffect 4s linear infinite;
+        }
+
+        .tunnel-ring:nth-child(1) { animation-delay: 0s; }
+        .tunnel-ring:nth-child(2) { animation-delay: 0.8s; }
+        .tunnel-ring:nth-child(3) { animation-delay: 1.6s; }
+        .tunnel-ring:nth-child(4) { animation-delay: 2.4s; }
+        .tunnel-ring:nth-child(5) { animation-delay: 3.2s; }
+
+        .entanglement-viz {
+            position: absolute;
+            top: 70%;
+            left: 20%;
+            width: 300px;
+            height: 100px;
+        }
+
+        .entangled-particle {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            animation: entanglementSpin 2s linear infinite;
+        }
+
+        .particle-1 {
+            left: 0;
+            top: 50%;
+            background: var(--accent-color);
+        }
+
+        .particle-2 {
+            right: 0;
+            top: 50%;
+            background: var(--secondary-color);
+            animation-direction: reverse;
+        }
+
+        .entanglement-line {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            right: 15px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), transparent, var(--secondary-color));
+            animation: entanglementPulse 1s ease-in-out infinite alternate;
+        }
+
+        .circuit-board {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            width: 350px;
+            height: 200px;
+            opacity: 0.6;
+        }
+
+        .circuit-line {
+            position: absolute;
+            background: var(--primary-color);
+            box-shadow: 0 0 5px var(--primary-color);
+        }
+
+        .circuit-horizontal {
+            height: 2px;
+            width: 100%;
+            animation: circuitFlow 3s linear infinite;
+        }
+
+        .circuit-vertical {
+            width: 2px;
+            height: 100%;
+            animation: circuitFlow 3s linear infinite reverse;
+        }
+
+        .circuit-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            animation: nodeGlow 2s ease-in-out infinite;
+        }
+
+        .quantum-simulator {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .simulator-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .control-button {
+            background: rgba(0, 102, 255, 0.2);
+            border: 1px solid var(--primary-color);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-button:hover {
+            background: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .control-button.active {
+            background: var(--secondary-color);
+            color: var(--bg-dark);
+        }
+
+        .qubit-state-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .qubit-visualization {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .probability-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .probability-fill {
+            height: 100%;
+            background: var(--gradient);
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .matrix-display {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border: 1px solid var(--secondary-color);
+        }
+
+        .error-correction-viz {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .error-qubit {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .error-qubit.error {
+            border-color: var(--accent-color);
+            background: rgba(255, 0, 102, 0.3);
+            animation: errorBlink 1s infinite;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 2rem 0;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInTimeline 0.8s ease forwards;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+            transform: translateX(50px);
+        }
+
+        .timeline-date {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .timeline-content {
+            flex-grow: 1;
+            margin: 0 2rem;
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .company-card {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .company-card:hover::before {
+            left: 100%;
+        }
+
+        .company-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+        }
+
+        /* Additional Animations */
+        @keyframes interferenceWave {
+            0%, 100% { transform: scaleX(1) scaleY(1); }
+            50% { transform: scaleX(1.5) scaleY(0.5); }
+        }
+
+        @keyframes tunnelEffect {
+            0% { 
+                transform: scale(0.1) translateZ(0px);
+                opacity: 1;
+            }
+            100% { 
+                transform: scale(2) translateZ(200px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes entanglementSpin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes entanglementPulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes circuitFlow {
+            0% { box-shadow: 0 0 5px var(--primary-color); }
+            50% { box-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--secondary-color); }
+            100% { box-shadow: 0 0 5px var(--primary-color); }
+        }
+
+        @keyframes nodeGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 5px var(--secondary-color); }
+            50% { transform: scale(1.5); box-shadow: 0 0 15px var(--secondary-color), 0 0 25px var(--accent-color); }
+        }
+
+        @keyframes errorBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes slideInTimeline {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .bloch-sphere { display: none; }
+            .nav-links { display: none; }
+            .social-links { flex-direction: column; gap: 1rem; }
+            section { padding-left: 1rem; padding-right: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">QuantumWeb</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#conceptos">Conceptos</a></li>
+                <li><a href="#fundamentos">Fundamentos</a></li>
+                <li><a href="#algoritmos">Algoritmos</a></li>
+                <li><a href="#hardware">Hardware</a></li>
+                <li><a href="#simulacion">Simulación</a></li>
+                <li><a href="#aplicaciones">Aplicaciones</a></li>
+                <li><a href="#futuro">Futuro</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="quantum-bg">
+            <div class="bloch-sphere">
+                <div class="sphere">
+                    <div class="sphere-ring ring-1"></div>
+                    <div class="sphere-ring ring-2"></div>
+                    <div class="sphere-ring ring-3"></div>
+                    <div class="qubit-vector"></div>
+                </div>
+            </div>
+            
+            <!-- Interference Pattern -->
+            <div class="interference-pattern">
+                <div class="wave-line"></div>
+                <div class="wave-line"></div>
+                <div class="wave-line"></div>
+            </div>
+            
+            <!-- Quantum Tunneling -->
+            <div class="quantum-tunnel">
+                <div class="tunnel-ring"></div>
+                <div class="tunnel-ring"></div>
+                <div class="tunnel-ring"></div>
+                <div class="tunnel-ring"></div>
+                <div class="tunnel-ring"></div>
+            </div>
+            
+            <!-- Entanglement Visualization -->
+            <div class="entanglement-viz">
+                <div class="entangled-particle particle-1"></div>
+                <div class="entanglement-line"></div>
+                <div class="entangled-particle particle-2"></div>
+            </div>
+            
+            <!-- Circuit Board Pattern -->
+            <div class="circuit-board">
+                <div class="circuit-line circuit-horizontal" style="top: 20%;"></div>
+                <div class="circuit-line circuit-horizontal" style="top: 50%;"></div>
+                <div class="circuit-line circuit-horizontal" style="top: 80%;"></div>
+                <div class="circuit-line circuit-vertical" style="left: 30%;"></div>
+                <div class="circuit-line circuit-vertical" style="left: 70%;"></div>
+                <div class="circuit-node" style="top: 20%; left: 30%;"></div>
+                <div class="circuit-node" style="top: 50%; left: 70%;"></div>
+                <div class="circuit-node" style="top: 80%; left: 30%;"></div>
+            </div>
+            
+            <!-- Floating particles -->
+            <div class="particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="top: 60%; left: 80%; animation-delay: 1s;"></div>
+            <div class="particle" style="top: 80%; left: 20%; animation-delay: 2s;"></div>
+            <div class="particle" style="top: 30%; left: 70%; animation-delay: 1.5s;"></div>
+            <div class="particle" style="top: 15%; left: 85%; animation-delay: 0.5s;"></div>
+            <div class="particle" style="top: 75%; left: 60%; animation-delay: 2.5s;"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>Computación Cuántica</h1>
+            <p>by Marco - Explorando el futuro de la tecnología cuántica</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Portafolio</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fundamentos Físicos -->
+    <section id="fundamentos">
+        <h2 class="section-title">Fundamentos de la Mecánica Cuántica</h2>
+        
+        <div class="card">
+            <h3>Principio de Incertidumbre de Heisenberg</h3>
+            <p>La imposibilidad fundamental de conocer simultáneamente con precisión absoluta la posición y el momento de una partícula cuántica. Este principio establece que Δx·Δp ≥ ℏ/2, donde ℏ es la constante de Planck reducida.</p>
+            <div class="matrix-display">
+                Δx · Δp ≥ ℏ/2 = 5.27 × 10⁻³⁵ J·s
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Función de Onda (Ψ)</h3>
+                <p>Descripción matemática completa del estado cuántico de un sistema. La probabilidad de encontrar una partícula en una posición está dada por |Ψ|².</p>
+                <div class="matrix-display">
+                    Ψ(x,t) = A·e^(i(kx-ωt))
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Ecuación de Schrödinger</h3>
+                <p>Ecuación fundamental que describe la evolución temporal de los sistemas cuánticos.</p>
+                <div class="matrix-display">
+                    iℏ ∂Ψ/∂t = ĤΨ
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Operadores Cuánticos</h3>
+                <p>Herramientas matemáticas que actúan sobre las funciones de onda para extraer información observable del sistema.</p>
+                <div class="matrix-display">
+                    â† = (x̂ - ip̂)/√2
+                    â = (x̂ + ip̂)/√2
+                </div>
+            </div>
+        </div>
+
+        <div class="interactive-demo">
+            <h3>Visualización: Estados Cuánticos Puros y Mixtos</h3>
+            <p>Comprende la diferencia entre estados cuánticos puros (coherentes) y estados mixtos (decoherentes)</p>
+            <div class="qubit-state-display">
+                <div class="qubit-visualization">
+                    <h4>Estado Puro |0⟩</h4>
+                    <div class="probability-bar">
+                        <div class="probability-fill" style="width: 100%"></div>
+                    </div>
+                    <p>Coherencia: 100%</p>
+                </div>
+                <div class="qubit-visualization">
+                    <h4>Superposición |+⟩</h4>
+                    <div class="probability-bar">
+                        <div class="probability-fill" style="width: 50%"></div>
+                    </div>
+                    <p>|0⟩: 50% | |1⟩: 50%</p>
+                </div>
+                <div class="qubit-visualization">
+                    <h4>Estado Mixto</h4>
+                    <div class="probability-bar">
+                        <div class="probability-fill" style="width: 30%"></div>
+                    </div>
+                    <p>Coherencia: 30%</p>
+                </div>
+            </div>
+            <button class="demo-button" onclick="animateQuantumStates()">Animar Evolución Cuántica</button>
+        </div>
+    </section>
+
+    <!-- Simulación Cuántica Interactiva -->
+    <section id="simulacion">
+        <h2 class="section-title">Simulador Cuántico Interactivo</h2>
+        
+        <div class="quantum-simulator">
+            <h3>Circuito Cuántico Virtual</h3>
+            <p>Construye y ejecuta circuitos cuánticos básicos. Experimenta con puertas cuánticas y observa los resultados.</p>
+            
+            <div class="simulator-controls">
+                <button class="control-button" onclick="applyGate('H')">Puerta H (Hadamard)</button>
+                <button class="control-button" onclick="applyGate('X')">Puerta X (Pauli-X)</button>
+                <button class="control-button" onclick="applyGate('Y')">Puerta Y (Pauli-Y)</button>
+                <button class="control-button" onclick="applyGate('Z')">Puerta Z (Pauli-Z)</button>
+                <button class="control-button" onclick="applyGate('CNOT')">Puerta CNOT</button>
+                <button class="control-button" onclick="resetCircuit()">Reset</button>
+                <button class="control-button" onclick="measureQubit()">Medir</button>
+            </div>
+            
+            <div class="qubit-state-display">
+                <div class="qubit-visualization">
+                    <h4>Qubit 1</h4>
+                    <div id="qubit1-state">|0⟩</div>
+                    <div class="probability-bar">
+                        <div id="prob1" class="probability-fill" style="width: 100%"></div>
+                    </div>
+                    <div id="prob1-text">P(0) = 1.0</div>
+                </div>
+                <div class="qubit-visualization">
+                    <h4>Qubit 2</h4>
+                    <div id="qubit2-state">|0⟩</div>
+                    <div class="probability-bar">
+                        <div id="prob2" class="probability-fill" style="width: 100%"></div>
+                    </div>
+                    <div id="prob2-text">P(0) = 1.0</div>
+                </div>
+            </div>
+            
+            <div class="matrix-display" id="state-vector">
+                Estado del Sistema: |00⟩
+                Amplitudes: [1+0i, 0+0i, 0+0i, 0+0i]
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Corrección de Errores Cuánticos</h3>
+            <p>Los qubits son extremadamente sensibles al ruido. Haz clic en los qubits para simular errores y observa cómo la corrección cuántica puede detectarlos.</p>
+            <div class="error-correction-viz">
+                <div class="error-qubit" onclick="toggleError(this, 0)">Q1</div>
+                <div class="error-qubit" onclick="toggleError(this, 1)">Q2</div>
+                <div class="error-qubit" onclick="toggleError(this, 2)">Q3</div>
+            </div>
+            <button class="demo-button" onclick="runErrorCorrection()">Ejecutar Corrección de Errores</button>
+            <div id="error-status">Sistema sin errores detectados</div>
+        </div>
+    </section>
+
+    <!-- Hardware Cuántico -->
+    <section id="hardware">
+        <h2 class="section-title">Tecnologías de Hardware Cuántico</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>🔬 Qubits Superconductores</h3>
+                <p>Utilizados por IBM y Google. Operan a temperaturas cerca del cero absoluto (-273°C) usando circuitos superconductores basados en junctions Josephson.</p>
+                <div class="matrix-display">
+                    Temperatura: ~15 mK
+                    Coherencia: ~100 μs
+                    Fidelidad: >99%
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>⚡ Iones Atrapados</h3>
+                <p>Tecnología de IonQ y Honeywell. Iones individuales suspendidos en campos electromagnéticos, manipulados con láser de precisión.</p>
+                <div class="matrix-display">
+                    Temperatura: Ambiente
+                    Coherencia: ~1 min
+                    Conectividad: Completa
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>💎 Centros de Color en Diamante</h3>
+                <p>Defectos en la estructura cristalina del diamante que actúan como qubits. Operan a temperatura ambiente.</p>
+                <div class="matrix-display">
+                    Temperatura: 300K
+                    Coherencia: ~1 ms
+                    Ventaja: Estabilidad
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>🌊 Qubits Fotónicos</h3>
+                <p>Utilizan fotones (partículas de luz) como qubits. Ideales para comunicación cuántica y computación distribuida.</p>
+                <div class="matrix-display">
+                    Velocidad: c (luz)
+                    Decoherencia: Mínima
+                    Aplicación: Redes
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>🧲 Átomos Neutros</h3>
+                <p>Átomos individuales atrapados por luz láser, ofreciendo alta conectividad y escalabilidad prometedora.</p>
+                <div class="matrix-display">
+                    Escalabilidad: Alta
+                    Manipulación: Óptica
+                    Estado: Experimental
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>🌀 Anyones Topológicos</h3>
+                <p>Enfoque de Microsoft usando propiedades topológicas para qubits inherentemente protegidos contra errores.</p>
+                <div class="matrix-display">
+                    Protección: Topológica
+                    Estado: Investigación
+                    Ventaja: Estabilidad
+                </div>
+            </div>
+        </div>
+
+        <div class="interactive-demo">
+            <h3>Comparación de Tecnologías Cuánticas</h3>
+            <p>Cada tecnología tiene ventajas y desafíos únicos. El futuro probablemente verá aplicaciones especializadas para cada tipo.</p>
+            <div class="timeline">
+                <div class="timeline-item" style="animation-delay: 0.2s;">
+                    <div class="timeline-date">2019</div>
+                    <div class="timeline-content">
+                        <h4>Supremacía Cuántica Google</h4>
+                        <p>Sycamore realiza cálculo en 200 segundos que tomaría miles de años a supercomputadoras clásicas.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" style="animation-delay: 0.4s;">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <h4>IBM Eagle 127 Qubits</h4>
+                        <p>Primer procesador cuántico en superar la barrera de 100 qubits físicos.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" style="animation-delay: 0.6s;">
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-content">
+                        <h4>IBM Osprey 433 Qubits</h4>
+                        <p>El procesador cuántico más potente hasta la fecha con arquitectura avanzada.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" style="animation-delay: 0.8s;">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <h4>Avances en Corrección de Errores</h4>
+                        <p>Demostraciones exitosas de códigos de corrección cuántica en múltiples plataformas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="conceptos">
+        <h2 class="section-title">Conceptos Fundamentales</h2>
+        
+        <div class="card">
+            <h3>¿Qué es la Computación Cuántica?</h3>
+            <p>La computación cuántica aprovecha los principios de la mecánica cuántica para procesar información de manera fundamentalmente diferente a las computadoras clásicas, utilizando qubits que pueden existir en superposición de estados.</p>
+        </div>
+
+        <div class="grid">
+            <div class="quantum-concept">
+                <div class="concept-icon">⚛️</div>
+                <h3>Superposición</h3>
+                <p>Los qubits pueden estar en múltiples estados simultáneamente, permitiendo procesamiento paralelo masivo.</p>
+            </div>
+            
+            <div class="quantum-concept">
+                <div class="concept-icon">🔗</div>
+                <h3>Entrelazamiento</h3>
+                <p>Qubits correlacionados que mantienen conexión instantánea independientemente de la distancia.</p>
+            </div>
+            
+            <div class="quantum-concept">
+                <div class="concept-icon">🌊</div>
+                <h3>Interferencia</h3>
+                <p>Amplificación de respuestas correctas y cancelación de incorrectas mediante interferencia cuántica.</p>
+            </div>
+        </div>
+
+        <div class="interactive-demo">
+            <h3>Demostración Interactiva: Superposición Cuántica</h3>
+            <p>Observa cómo una función de onda cuántica representa la superposición de estados</p>
+            <div class="wave-animation">
+                <div class="wave"></div>
+            </div>
+            <button class="demo-button" onclick="toggleWave()">Colapsar/Expandir Función de Onda</button>
+        </div>
+    </section>
+
+    <!-- Algoritmos Cuánticos -->
+    <section id="algoritmos">
+        <h2 class="section-title">Algoritmos Cuánticos</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>Algoritmo de Shor</h3>
+                <p>Factorización eficiente de números enteros grandes, con implicaciones revolucionarias para la criptografía moderna.</p>
+                <div class="concept-icon">🔢</div>
+            </div>
+            
+            <div class="card">
+                <h3>Algoritmo de Grover</h3>
+                <p>Búsqueda cuadráticamente más rápida en bases de datos no estructuradas comparado con algoritmos clásicos.</p>
+                <div class="concept-icon">🔍</div>
+            </div>
+            
+            <div class="card">
+                <h3>Simulación Cuántica</h3>
+                <p>Modelado de sistemas cuánticos complejos para investigación en química y física de materiales.</p>
+                <div class="concept-icon">🧪</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aplicaciones -->
+    <section id="aplicaciones">
+        <h2 class="section-title">Aplicaciones Revolucionarias</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>Criptografía Cuántica</h3>
+                <p>Comunicaciones ultraseguras basadas en principios de la mecánica cuántica que detectan cualquier intento de interceptación.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Descubrimiento de Fármacos</h3>
+                <p>Simulación molecular precisa para acelerar el desarrollo de nuevos medicamentos y terapias.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Optimización Financiera</h3>
+                <p>Resolución de problemas complejos de portafolio y gestión de riesgos en tiempo real.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Inteligencia Artificial</h3>
+                <p>Aceleración exponencial del aprendizaje automático y procesamiento de big data.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recursos -->
+    <section id="recursos">
+        <h2 class="section-title">Recursos de Aprendizaje</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>Simuladores Cuánticos</h3>
+                <p>Plataformas online para experimentar con circuitos cuánticos:</p>
+                <ul style="text-align: left; margin-top: 1rem;">
+                    <li>IBM Quantum Experience</li>
+                    <li>Microsoft Q# Development Kit</li>
+                    <li>Google Cirq</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Lenguajes de Programación</h3>
+                <p>Herramientas para desarrollar algoritmos cuánticos:</p>
+                <ul style="text-align: left; margin-top: 1rem;">
+                    <li>Qiskit (Python)</li>
+                    <li>Q# (Microsoft)</li>
+                    <li>Cirq (Google)</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Cursos Recomendados</h3>
+                <p>Formación estructurada en computación cuántica:</p>
+                <ul style="text-align: left; margin-top: 1rem;">
+                    <li>MIT OpenCourseWare</li>
+                    <li>IBM Qiskit Textbook</li>
+                    <li>Microsoft Quantum Katas</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Tu Nombre. Explorando el universo cuántico, un qubit a la vez.</p>
+        <p style="margin-top: 1rem; color: var(--text-secondary);">Construido con pasión por la física cuántica y el desarrollo web</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Interactive wave animation control
+        let waveActive = true;
+        function toggleWave() {
+            const wave = document.querySelector('.wave');
+            const button = document.querySelector('.demo-button');
+            
+            if (waveActive) {
+                wave.style.animationPlayState = 'paused';
+                wave.style.opacity = '0.2';
+                button.textContent = 'Activar Superposición';
+                waveActive = false;
+            } else {
+                wave.style.animationPlayState = 'running';
+                wave.style.opacity = '0.6';
+                button.textContent = 'Colapsar Función de Onda';
+                waveActive = true;
+            }
+        }
+
+        // Add more interactive particles on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const particles = document.querySelectorAll('.particle');
+            
+            particles.forEach((particle, index) => {
+                const speed = (index + 1) * 0.5;
+                particle.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+
+        // Dynamic background effect
+        function createQuantumParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            
+            document.querySelector('.quantum-bg').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        // Create particles periodically
+        setInterval(createQuantumParticle, 3000);
+
+        // Add hover effects to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 10px 30px rgba(0, 255, 255, 0.3)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Header background opacity on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrolled = window.pageYOffset;
+            const opacity = Math.min(scrolled / 100, 0.95);
+            header.style.background = `rgba(10, 10, 10, ${opacity})`;
+        });
+    </script>
+</body>
+</html>
